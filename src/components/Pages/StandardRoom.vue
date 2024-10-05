@@ -10,9 +10,9 @@
       <div class="container">
         <h2 class="section-title">Room Amenities</h2>
         <div class="row">
-          <div class="col-md-3 mb-4" v-for="amenity in amenities" :key="amenity.title">
-            <div class="card">
-              <img :src="amenity.image" :alt="amenity.title" class="card-img-top">
+          <div class="col-md-6 col-lg-3 mb-4" v-for="amenity in amenities" :key="amenity.title">
+            <div class="card h-100">
+              <img :src="amenity.image" :alt="amenity.title" class="card-img-top amenity-img">
               <div class="card-body">
                 <h5 class="card-title">{{ amenity.title }}</h5>
                 <p class="card-text">{{ amenity.description }}</p>
@@ -97,10 +97,10 @@ export default {
   data() {
     return {
       amenities: [
-        { title: 'Free Wi-Fi', image: 'https://picsum.photos/1600/900?wifi', description: 'High-speed wireless internet access in all rooms.' },
-        { title: 'Flat Screen TV', image: 'https://picsum.photos/1600/900?tv', description: 'Enjoy your favorite shows on our modern flat screen TVs.' },
-        { title: 'Air Conditioning', image: 'https://picsum.photos/1600/900?ac', description: 'Stay cool with individually controlled air conditioning.' },
-        { title: 'Room Service', image: 'https://picsum.photos/100/100?service', description: 'Order from our extensive menu, available 24/7.' }
+        { title: 'Free Wi-Fi', image: 'https://picsum.photos/seed/wifi/300/200', description: 'High-speed wireless internet access in all rooms.' },
+        { title: 'Flat Screen TV', image: 'https://picsum.photos/seed/tv/300/200', description: 'Enjoy your favorite shows on our modern flat screen TVs.' },
+        { title: 'Air Conditioning', image: 'https://picsum.photos/seed/ac/300/200', description: 'Stay cool with individually controlled air conditioning.' },
+        { title: 'Room Service', image: 'https://picsum.photos/seed/service/300/200', description: 'Order from our extensive menu, available 24/7.' }
       ],
       galleryImages: [
         { src: 'https://picsum.photos/1600/900?hotel1', alt: 'Room Image 1' },
@@ -163,8 +163,9 @@ export default {
 
 <style scoped>
 .header-section {
-  height: 60vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/1600/900?room');
+  position: relative;
+  height: 400px;
+  background-image: url('https://picsum.photos/1600/900?room');
   background-size: cover;
   background-position: center;
   color: white;
@@ -174,96 +175,111 @@ export default {
   text-align: center;
 }
 
+.header-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .header-section h1 {
-  font-size: 4rem;
-  font-weight: 300;
+  position: relative;
+  font-size: 3rem;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 300;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #2c3e50;
-}
-
 .amenities-section {
-  padding: 4rem 0;
+  padding: 50px 0;
   background-color: #f8f9fa;
 }
 
 .amenities-section .card {
-  background-color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.amenities-section .card:hover {
-  transform: translateY(-5px);
+  height: 100%;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .amenities-section .card img {
-  width: 100%;
+  max-width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
 .carousel-section {
-  padding: 4rem 0;
+  padding: 50px 0;
+  background-color: #e9ecef;
 }
 
 .carousel-item img {
   width: 100%;
-  height: 60vh;
+  height: 500px;
   object-fit: cover;
 }
 
 .booking-section {
-  padding: 4rem 0;
-  background-color: #f8f9fa;
+  padding: 50px 0;
+  background-color: #fff;
 }
 
 .booking-form {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form .form-control {
+  border-radius: 5px;
+}
+
+.booking-form .btn-primary {
+  background-color: #28a745;
+  border-color: #28a745;
+  transition: background-color 0.3s ease;
+}
+
+.booking-form .btn-primary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.form-control.error {
+  border-color: red;
 }
 
 .reviews-section {
-  padding: 4rem 0;
+  padding: 50px 0;
+  background-color: #f8f9fa;
+  text-align: center;
 }
 
 .review {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
 }
 
 .review .quote {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-style: italic;
   color: #555;
-  margin-bottom: 1rem;
 }
 
 .review .author {
+  margin-top: 10px;
   font-weight: bold;
-  color: #2c3e50;
 }
 
-@media (max-width: 768px) {
-  .header-section h1 {
-    font-size: 3rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 </style>

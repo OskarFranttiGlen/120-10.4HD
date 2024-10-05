@@ -8,7 +8,7 @@
 
     <section class="amenities-section">
       <div class="container">
-        <h2 class="section-title">Room Amenities</h2>
+        <h2 class="text-center mb-5">Room Amenities</h2>
         <div class="row">
           <div class="col-md-3 mb-4" v-for="amenity in amenities" :key="amenity.title">
             <div class="card">
@@ -25,7 +25,7 @@
 
     <section class="carousel-section">
       <div class="container">
-        <h2 class="section-title">Gallery</h2>
+        <h2 class="text-center mb-5">Gallery</h2>
         <div id="roomCarousel" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item" :class="{ active: index === 0 }" v-for="(image, index) in galleryImages" :key="index">
@@ -46,7 +46,7 @@
 
     <section class="booking-section">
       <div class="container">
-        <h2 class="section-title">Book Your Stay</h2>
+        <h2 class="text-center mb-5">Book Your Stay</h2>
         <form class="booking-form" id="bookingForm" @submit.prevent="validateForm" novalidate aria-label="Booking Form">
           <div class="row g-3">
             <div class="col-md-4 position-relative">
@@ -77,7 +77,7 @@
 
     <section class="reviews-section">
       <div class="container">
-        <h2 class="section-title">What Our Guests Say</h2>
+        <h2 class="text-center mb-5">What Our Guests Say</h2>
         <div class="row">
           <div class="col-md-4" v-for="(review, index) in reviews" :key="index">
             <div class="review">
@@ -163,8 +163,9 @@ export default {
 
 <style scoped>
 .header-section {
-  height: 60vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/1600/900?suite');
+  position: relative;
+  height: 400px;
+  background-image: url('https://picsum.photos/1600/900?room');
   background-size: cover;
   background-position: center;
   color: white;
@@ -174,74 +175,76 @@ export default {
   text-align: center;
 }
 
+.header-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .header-section h1 {
-  font-size: 4rem;
-  font-weight: 300;
+  position: relative;
+  font-size: 3rem;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 300;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #2c3e50;
-}
-
 .amenities-section {
-  padding: 4rem 0;
+  padding: 50px 0;
   background-color: #f8f9fa;
 }
 
 .amenities-section .card {
-  background-color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.amenities-section .card:hover {
-  transform: translateY(-5px);
+  height: 100%;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .amenities-section .card img {
-  width: 100%;
+  max-width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
 .carousel-section {
-  padding: 4rem 0;
+  padding: 50px 0;
+  background-color: #e9ecef;
 }
 
 .carousel-item img {
   width: 100%;
-  height: 60vh;
+  height: 500px;
   object-fit: cover;
 }
 
 .booking-section {
-  padding: 4rem 0;
-  background-color: #f8f9fa;
+  padding: 50px 0;
+  background-color: #fff;
 }
 
 .booking-form {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form .form-control {
+  border-radius: 5px;
 }
 
 .booking-form .btn-primary {
-  background-color: #2c3e50;
-  border-color: #2c3e50;
+  background-color: #28a745;
+  border-color: #28a745;
   transition: background-color 0.3s ease;
 }
 
 .booking-form .btn-primary:hover {
-  background-color: #34495e;
-  border-color: #34495e;
+  background-color: #218838;
+  border-color: #1e7e34;
 }
 
 .error-message {
@@ -255,36 +258,23 @@ export default {
 }
 
 .reviews-section {
-  padding: 4rem 0;
+  padding: 50px 0;
+  background-color: #f8f9fa;
+  text-align: center;
 }
 
 .review {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
 }
 
 .review .quote {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-style: italic;
   color: #555;
-  margin-bottom: 1rem;
 }
 
 .review .author {
+  margin-top: 10px;
   font-weight: bold;
-  color: #2c3e50;
-}
-
-@media (max-width: 768px) {
-  .header-section h1 {
-    font-size: 3rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
 }
 </style>
