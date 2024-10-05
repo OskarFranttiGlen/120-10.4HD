@@ -176,11 +176,15 @@ const handleBookingSubmit = (formData) => {
   padding: 12px 36px;
   transition: all 0.3s ease;
   background-color: v-bind('isDarkMode ? "#4a90e2" : "#007bff"');
-  color: white;
+  color: white !important;
+  border: none;
 }
 
-.cta-button:hover {
-  background-color: v-bind('isDarkMode ? "#3a7bc8" : "#0056b3"');
+.cta-button:hover,
+.cta-button:focus,
+.cta-button:active {
+  background-color: v-bind('isDarkMode ? "#3a7bc8" : "#0056b3"') !important;
+  color: white !important;
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
